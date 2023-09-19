@@ -1,0 +1,20 @@
+{
+    "name": "dm",
+    "version": "1.0.0",
+    "description": "某麦抢票插件",
+    "main": "getSign.js",
+    "scripts": {
+        "start": "node dm.js"
+    },
+    "author": "yyds",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^1.4.0",
+        "chalk": "^4.1.2",
+        "express": "^4.18.2",
+        "node-gzip": "^1.1.2",
+        "puppeteer": "^21.1.1",
+        "puppeteer-extra": "^3.3.6",
+        "puppeteer-extra-plugin-stealth": "^2.11.2"
+    }
+}

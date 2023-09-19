@@ -1,0 +1,52 @@
+version: '3.7'
+services:
+    dm:
+        image: dm:latest
+        container_name: dm0
+        restart: always
+        tty: true
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: '5'
+                max-size: '1024m'
+        ports:
+            - '1234:7070'
+        environment:
+            itemId: 730934795185
+            selectedNum: 2
+            skuId: '["5232490110158"]'
+            currentPerformId: '["211424286"]'
+            dataType: 2
+            skuMore: false
+            auto: true
+            startTime: '2023-09-12 12:17'
+            signHost: 'http://localhost/getSign'
+            user: 0
+            wxNotify: 'http://localhost/notify'
+            wxId: 'xxx'
+    dm1:
+        image: dm:latest
+        container_name: dm1
+        restart: always
+        tty: true
+        logging:
+            driver: 'json-file'
+            options:
+                max-file: '5'
+                max-size: '1024m'
+        ports:
+            - '1235:7070'
+        environment:
+            itemId: 726135281455
+            selectedNum: 2
+            skuId: '["5232490110158"]'
+            currentPerformId: '["211424286"]'
+            dataType: 2
+            skuMore: false
+            auto: true
+            startTime: '2023-09-12 12:17'
+            signHost: 'http://localhost/getSign'
+            user: 1
+            wxNotify: 'http://localhost/notify'
+            wxId: 'xxx'

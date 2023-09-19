@@ -1,0 +1,16 @@
+{
+    "name": "dm",
+    "version": "1.0.0",
+    "description": "某麦抢票签名服务",
+    "main": "getSign.js",
+    "scripts": {
+        "start": "node getSign.js"
+    },
+    "author": "yyds",
+    "license": "ISC",
+    "dependencies": {
+        "chalk": "^4.1.2",
+        "express": "^4.18.2",
+        "frida": "^16.1.3"
+    }
+}
