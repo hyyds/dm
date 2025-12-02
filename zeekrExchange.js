@@ -91,9 +91,9 @@ async function getExchange(authorization,id) {
       Authorization: authorization,
     },
   };
-  console.log(rest)
+  console.log($.toStr(rest))
   var obj = await Request(rest);
-  console.log(obj)
+  console.log($.toStr(obj))
   if (obj.code === "000000") {
       $.log(obj.msg)
     // return obj.materials[0].id;
