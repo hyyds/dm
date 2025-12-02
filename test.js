@@ -6,33 +6,49 @@
  * @ Description: 指令
  */
 
-const puppeteer = require('puppeteer')
+const puppeteer = require('puppeteer-extra')
 const antibotbrowser = require('antibotbrowser')
+const StealthPlugin = require('puppeteer-extra-plugin-stealth')
+const os = require('os')
+const fs = require('fs/promises')
+puppeteer.use(StealthPlugin())
 
-// const StealthPlugin = require('puppeteer-extra-plugin-stealth')
-
-// puppeteer.use(StealthPlugin())
+const defaultChromeExecutablePath = () => {
+    switch (os.platform()) {
+        case 'win32':
+            return 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+        case 'darwin':
+            return '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+        case 'linux':
+            return '/usr/bin/chromium-browser'
+        default: {
+            const chromeExists = fs.existsSync('/usr/bin/google-chrome')
+            return chromeExists ? '/usr/bin/google-chrome' : '/usr/bin/google-chrome-stable'
+        }
+    }
+}
 /**
  * 获取指令
  */
 async function moviceBot() {
     const createdBrowser = async () => {
-        const antibrowser = await antibotbrowser.startbrowser()
-        browser = await puppeteer.connect({ browserWSEndpoint: antibrowser.websokcet })
-        // browser = await puppeteer.launch({
-        //     headless: false,
-        //     defaultViewport: { width: 1680, height: 800 },
-        //     args: [`--window-size=${1680},${1080}`, '--no-sandbox', '--disable-setuid-sandbox'],
-        //     timeout: 0
-        // })
+        // const antibrowser = await antibotbrowser.startbrowser()
+        // browser = await puppeteer.connect({ browserWSEndpoint: antibrowser.websokcet })
+        browser = await puppeteer.launch({
+            headless: false,
+            executablePath: defaultChromeExecutablePath(),
+            defaultViewport: { width: 1680, height: 800 },
+            args: [`--window-size=${1680},${1080}`, '--no-sandbox', '--disable-setuid-sandbox'],
+            timeout: 0
+        })
     }
     async function createPage(url) {
         let [page] = await browser.pages()
         // const context = await browser.createIncognitoBrowserContext()
         // const page = await context.newPage()
-        // await page.setUserAgent(
-        //     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
-        // )
+        await page.setUserAgent(
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
+        )
         await page.goto(url, { waitUntil: 'networkidle0', timeout: 0 })
         return page
     }
@@ -69,6 +85,7 @@ async function moviceBot() {
     // const frame = await elementHandle.contentFrame()
 
     const s = await page.$$('#main a')
+    return
 
     if (!s.length) {
         this.ws.send(sendTxtMsg(this.wxId, `没有搜索到你想看的~输入其他试试。`))

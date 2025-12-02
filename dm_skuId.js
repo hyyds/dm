@@ -90,9 +90,8 @@ const formatParmas = (str) => {
 
 // 查票详情
 const getDetail = async (body) => {
-    const { data } = await axios.get(`http://120.25.125.165:443/getSign`, {
+    const { data } = await axios.get(`http://192.168.0.74:8888/getSign`, {
         params: {
-            user: 0,
             api: 'mtop.alibaba.detail.subpage.getdetail',
             apiVersion: '2.0',
             body,
@@ -106,6 +105,8 @@ const getDetail = async (body) => {
             })
             .then((res) => {
                 const { result } = res.data.data
+                console.log(res.data)
+                return
                 const { itemBasicInfo, perform, performCalendar } = JSON.parse(result)
                 !baseInfo &&
                     printBaseInfo({

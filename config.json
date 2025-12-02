@@ -1,8 +1,8 @@
 {
-    "itemId": "738468281081",
+    "itemId": "807845782723",
     "selectedNum": "2",
-    "skuId": ["5269817451009"],
-    "currentPerformId": ["211694070"],
+    "skuId": [],
+    "currentPerformId": [],
     "dataType": 2,
     "skuMore": false,
     "auto": false,
@@ -12,3 +12,5 @@
     "wxNotify": "",
     "wxId": ""
 }
+
+
