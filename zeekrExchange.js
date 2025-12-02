@@ -91,13 +91,12 @@ async function getExchange(authorization,id) {
       Authorization: authorization,
     },
   };
-  console.log($.toStr(rest))
   var obj = await Request(rest);
   console.log($.toStr(obj))
-  if (obj.code === "000000") {
-      $.log(obj.msg)
-    // return obj.materials[0].id;
-  }
+  // if (obj.code === "000000") {
+  //     $.log(obj.msg)
+  //   // return obj.materials[0].id;
+  // }
 }
 //{"success":true,"code":"000000","data":{"first":true,"acceptResult":{"isCarUser":false,"isAcceptDriveAgreement":false,"isAcceptWalkAgreement":false},"lastDayWalkTime":{"yesterdayStartTime":"1718640000000","yesterdayEndTime":"1718726399999","isDayLight":true}}}
 
