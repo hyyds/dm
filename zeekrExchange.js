@@ -49,7 +49,6 @@ async function main() {
   )?.results[0]?.version;
   $.log(`最新版本号：${$.appversion}`);
   const id = await getInfo($.CK_Val?.authorization);
-
   await getExchange($.CK_Val?.authorization,id)
 }
 
@@ -92,6 +91,7 @@ async function getExchange(authorization,id) {
       Authorization: authorization,
     },
   };
+  console.log(rest)
   var obj = await Request(rest);
   console.log(obj)
   if (obj.code === "000000") {
